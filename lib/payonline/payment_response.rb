@@ -23,6 +23,23 @@ module Payonline
     def prepare_params(params)
       params
         .transform_keys { |key| key.to_s.underscore }
+        .permit(
+          :order_id,
+          :date_time,
+          :transaction_id,
+          :amount,
+          :currency,
+          :security_key,
+          :content_type,
+          :lang,
+          :provider,
+          :payment_amount,
+          :payment_currency,
+          :card_holder,
+          :card_number,
+          :eci
+        )
+        .to_h
         .with_indifferent_access
     end
   end
